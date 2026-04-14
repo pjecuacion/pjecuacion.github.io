@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoText — Audio &amp; Video to Structured Assets | pjecuacion</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#69daff","primary-dim":"#00c0ea","surface":"#0e0e0e","surface-container-low":"#131313","surface-container":"#1a1a1a","surface-container-high":"#20201f","on-primary-container":"#004050","tertiary":"#e6a7ff"},fontFamily:{display:["'Space Grotesk'","Inter","sans-serif"]}}}}</script>
+<link href="../shared.css" rel="stylesheet"/>
+<style>
+.feature-card{transition:transform .35s ease,box-shadow .35s ease;position:relative;overflow:hidden;}
+.feature-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transition:transform .35s ease;}
+.feature-card:hover::before{transform:scaleX(1);}.feature-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(105,218,255,0.1);}
+.cta-box::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(105,218,255,0.1) 0%,transparent 60%);animation:ctaPulse 5s ease-in-out infinite;pointer-events:none;}
+@keyframes ctaPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.9}}
+</style>
+</head>
+<body class="bg-[#0e0e0e] selection:bg-primary selection:text-on-primary-container">
+<div class="cursor"></div>
+<div class="bg-animation"><div class="floating-orb orb-1"></div><div class="floating-orb orb-2"></div><div class="floating-orb orb-3"></div></div>
+<div class="grid-lines"></div>
+
+<nav class="fixed top-0 w-full z-50 bg-[#05050a]/75 backdrop-blur-xl border-b border-[#69daff]/8 transition-all duration-300" id="main-nav">
+    <div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+        <a class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-1" href="../"><span class="material-symbols-outlined text-base">arrow_back</span> All Apps</a>
+        <span class="font-display text-lg font-bold tracking-tighter text-white uppercase">EchoText</span>
+        <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 active:scale-95 transition-all" href="#pricing">Buy Pro — $29</a>
+    </div>
+</nav>
+
+<main class="pt-20">
+
+<section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 py-24 relative">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 ghost-border mb-8 anim-1">
+        <span class="w-2 h-2 rounded-full bg-primary" style="animation:pulse 2s ease-in-out infinite"></span>
+        <span class="text-[10px] uppercase tracking-widest font-bold text-primary">Windows Only — Fully Offline</span>
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] max-w-4xl anim-2">
+        Turn recordings into <span class="gradient-text">structured assets.</span>
+    </h1>
+    <p class="mt-6 text-lg text-zinc-400 max-w-xl anim-3">Export word-level JSON, sentence clips, and unique stills from any audio or video file. No cloud. No subscription.</p>
+    <div class="flex flex-wrap gap-4 justify-center mt-10 anim-4">
+        <a class="primary-gradient text-on-primary-container px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 active:scale-95 transition-all shadow-[0_0_32px_rgba(105,218,255,0.28)]" href="#pricing">Get EchoText</a>
+        <a class="bg-white/5 ghost-border text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#features">See Features</a>
+    </div>
+    <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2"><span>Scroll</span><div class="mouse-icon"></div></div>
+</section>
+
+<section class="py-24 px-6 md:px-12 lg:px-24" id="features">
+    <div class="text-center mb-16 reveal">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Features</span>
+        <h2 class="font-display mt-4 text-3xl md:text-4xl font-bold tracking-tight">Structured outputs for real production work.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">data_object</span>
+            <h3 class="font-display font-bold text-xl mb-2">Word-Level JSON</h3>
+            <p class="text-sm text-zinc-400">Precise timestamps and confidence scores for every word — perfect for automated subtitling and search indexing.</p>
+        </div>
+        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">movie</span>
+            <h3 class="font-display font-bold text-xl mb-2">Sentence-Level Clips</h3>
+            <p class="text-sm text-zinc-400">Auto-export WAV or MP4 snippets for every detected sentence. Each file is labelled and ready to use.</p>
+        </div>
+        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">image_search</span>
+            <h3 class="font-display font-bold text-xl mb-2">Unique Still Extraction</h3>
+            <p class="text-sm text-zinc-400">Extracts visually distinct frames from video — no near-duplicates, no manual skimming.</p>
+        </div>
+        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">folder_managed</span>
+            <h3 class="font-display font-bold text-xl mb-2">Batch Folder Processing</h3>
+            <p class="text-sm text-zinc-400">Drop a folder of recordings, get a structured asset library out the other end.</p>
+        </div>
+        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">cloud_off</span>
+            <h3 class="font-display font-bold text-xl mb-2">Fully Offline</h3>
+            <p class="text-sm text-zinc-400">Runs entirely on your machine using bundled Whisper models. No API keys, no internet required.</p>
+        </div>
+        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">preview</span>
+            <h3 class="font-display font-bold text-xl mb-2">In-App Preview</h3>
+            <p class="text-sm text-zinc-400">Listen to individual sentence clips directly in the app before exporting your final asset library.</p>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 px-6 md:px-12 lg:px-24" id="pricing">
+    <div class="text-center mb-16 reveal">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Pricing</span>
+        <h2 class="font-display mt-4 text-4xl font-black tracking-tighter">Simple. One-time. Yours.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="feature-card bg-[#131313] p-10 rounded-xl ghost-border flex flex-col justify-between reveal">
+            <div>
+                <h3 class="font-display text-2xl font-bold mb-4">Personal</h3>
+                <ul class="space-y-3 text-zinc-400 text-sm">
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Bundled tiny.en model</li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Word JSON, sentence clips, unique stills</li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">block</span> Personal use only</li>
+                </ul>
+            </div>
+            <div class="mt-10 pt-6 border-t border-white/5">
+                <div class="font-display text-3xl font-black mb-6">Free</div>
+                <button class="w-full bg-white/5 ghost-border text-white py-3 rounded-full font-bold hover:bg-white/10 transition-all">Download Personal</button>
+            </div>
+        </div>
+        <div class="feature-card bg-[#1a1a1a] p-10 rounded-xl border-2 border-primary/20 flex flex-col justify-between relative overflow-hidden reveal">
+            <div class="absolute top-4 right-4 primary-gradient text-on-primary-container px-3 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase">Pro</div>
+            <div>
+                <h3 class="font-display text-2xl font-bold mb-4">EchoText Pro</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center gap-3 text-primary font-semibold"><span class="material-symbols-outlined text-sm">bolt</span> large-v3 transcription accuracy</li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Commercial-use license</li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> All Personal features included</li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> One-time license key</li>
+                </ul>
+            </div>
+            <div class="mt-10 pt-6 border-t border-white/5">
+                <div class="font-display text-3xl font-black mb-1">$29 <span class="text-sm font-normal text-zinc-400">one-time</span></div>
+                <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-6">Launch Price</div>
+                <a class="block w-full text-center primary-gradient text-on-primary-container py-3 rounded-full font-bold hover:brightness-110 transition-all shadow-[0_0_24px_rgba(105,218,255,0.2)]" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/e7af0b0c-3956-4fa4-841b-96ec9c4f1b5e">Buy EchoText Pro</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 text-center px-6 md:px-12">
+    <div class="cta-box glass-panel p-12 rounded-3xl ghost-border max-w-4xl mx-auto relative overflow-hidden reveal">
+        <h2 class="font-display text-4xl font-black tracking-tighter mb-4 relative z-10">Structured outputs. Zero cloud.</h2>
+        <p class="text-lg text-zinc-400 mb-8 max-w-xl mx-auto relative z-10">Export the exact data your workflow needs — word-by-word, sentence-by-sentence, still-by-still.</p>
+        <a class="primary-gradient text-on-primary-container px-10 py-4 rounded-full font-bold text-lg hover:brightness-110 transition-all inline-block relative z-10" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/e7af0b0c-3956-4fa4-841b-96ec9c4f1b5e">Get EchoText Pro — $29</a>
+    </div>
+</section>
+
+</main>
+<footer class="w-full border-t border-white/5 bg-[#030306]">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+        <div class="mb-4 md:mb-0">
+            <div class="font-display text-lg font-black text-zinc-200 tracking-tighter mb-1">EchoText</div>
+            <p class="text-xs uppercase tracking-widest text-zinc-600">© 2026 All rights reserved.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8">
+            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../">All Apps</a>
+            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="#pricing">Buy Pro</a>
+        </div>
+    </div>
+</footer>
+<script src="../hub.js"></script>
+</body>
+</html>
