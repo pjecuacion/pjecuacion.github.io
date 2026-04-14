@@ -1,6 +1,6 @@
 // Custom cursor
 const cursor = document.querySelector('.cursor');
-if (cursor) {
+if (cursor && !window.matchMedia('(pointer: coarse)').matches) {
     document.addEventListener('mousemove', e => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
@@ -21,14 +21,16 @@ window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
 
 // Parallax orbs on mouse move
-document.addEventListener('mousemove', e => {
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    document.querySelectorAll('.floating-orb').forEach((orb, i) => {
-        const s = (i + 1) * 16;
-        orb.style.transform = `translate(${x * s}px, ${y * s}px)`;
+if (!window.matchMedia('(pointer: coarse)').matches) {
+    document.addEventListener('mousemove', e => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        document.querySelectorAll('.floating-orb').forEach((orb, i) => {
+            const s = (i + 1) * 16;
+            orb.style.transform = `translate(${x * s}px, ${y * s}px)`;
+        });
     });
-});
+}
 
 // Nav darkens on scroll
 const nav = document.getElementById('main-nav');
