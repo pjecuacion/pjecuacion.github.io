@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Bulk WebP — Batch Convert Images to WebP | pjecuacion</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#69daff","primary-dim":"#00c0ea","surface":"#0e0e0e","surface-container-low":"#131313","surface-container":"#1a1a1a","surface-container-high":"#20201f","on-primary-container":"#004050","tertiary":"#e6a7ff"},fontFamily:{display:["'Space Grotesk'","Inter","sans-serif"]}}}}</script>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+        "colors": {
+            "primary": "#69daff", "primary-dim": "#00c0ea", "primary-fixed": "#00cffc",
+            "on-primary-container": "#004050", "surface": "#0e0e0e",
+            "surface-container-lowest": "#000000", "surface-container-low": "#131313",
+            "surface-container": "#1a1a1a", "surface-container-high": "#20201f",
+            "surface-container-highest": "#262626", "outline-variant": "#484847",
+            "tertiary": "#e6a7ff"
+        },
+        "fontFamily": { "display": ["'Space Grotesk'", "Inter", "sans-serif"] }
+    }}
+}
+</script>
 <link rel="icon" type="image/png" href="../favicon.png"/>
 <link href="../shared.css" rel="stylesheet"/>
 <style>
-.feature-card{transition:transform .35s ease,box-shadow .35s ease;position:relative;overflow:hidden;}
-.feature-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transition:transform .35s ease;}
-.feature-card:hover::before{transform:scaleX(1);}.feature-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(105,218,255,0.1);}
-.cta-box::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(105,218,255,0.1) 0%,transparent 60%);animation:ctaPulse 5s ease-in-out infinite;pointer-events:none;}
-@keyframes ctaPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.9}}
+    .feature-card { transition: transform .35s ease, box-shadow .35s ease; position: relative; overflow: hidden; }
+    .feature-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform .35s ease; }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(105,218,255,0.1); }
+    .hero-card-wrapper { perspective: 1000px; }
+    .hero-card-inner { animation: cardFloat 7s ease-in-out infinite; }
+    @keyframes cardFloat { 0%,100%{transform:rotateY(-12deg) rotateX(4deg) translateY(0)} 50%{transform:rotateY(12deg) rotateX(-4deg) translateY(-16px)} }
+    .card-shine { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent); animation: shine 5s ease-in-out infinite; }
+    @keyframes shine { 0%,100%{left:-100%} 50%{left:100%} }
+    .cta-box::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(105,218,255,0.1) 0%, transparent 60%); animation: ctaPulse 5s ease-in-out infinite; pointer-events: none; }
+    @keyframes ctaPulse { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.2);opacity:.9} }
+    .anim-5{opacity:0;animation:fadeInUp .9s ease .65s forwards}
+    .hero-card { background: rgba(19,19,19,0.9); border: 1px solid rgba(105,218,255,0.15); border-radius: 12px; overflow: hidden; }
+    .size-bar { height: 6px; border-radius: 3px; }
 </style>
 </head>
 <body class="bg-[#0e0e0e] selection:bg-primary selection:text-on-primary-container">
@@ -23,131 +48,218 @@
 <div class="grid-lines"></div>
 
 <nav class="fixed top-0 w-full z-50 bg-[#05050a]/75 backdrop-blur-xl border-b border-[#69daff]/8 transition-all duration-300" id="main-nav">
-    <div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-        <a class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-1" href="../"><span class="material-symbols-outlined text-base">arrow_back</span> All Apps</a>
-        <span class="font-display text-lg font-bold tracking-tighter text-white uppercase">Bulk WebP</span>
-        <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 active:scale-95 transition-all" href="#pricing">Buy Pro — $19</a>
-    </div>
+<div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+    <a class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-1" href="../"><span class="material-symbols-outlined text-base">arrow_back</span> All Apps</a>
+    <span class="font-display text-lg font-bold tracking-tighter text-white uppercase hidden md:block">Bulk WebP</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+    <a class="text-zinc-400 hover:text-white transition-colors text-sm font-medium" href="#features">Features</a>
+    <a class="text-zinc-400 hover:text-white transition-colors text-sm font-medium" href="#pricing">Pricing</a>
+    <a class="text-zinc-400 hover:text-white transition-colors text-sm font-medium" href="#download">Download</a>
+</div>
+<a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 active:scale-95 transition-all" href="#pricing">Buy Pro — $19</a>
+</div>
 </nav>
 
-<main class="pt-20">
+<main class="pt-20" id="top">
 
-<section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 py-24 relative">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 ghost-border mb-8 anim-1">
-        <span class="w-2 h-2 rounded-full bg-primary" style="animation:pulse 2s ease-in-out infinite"></span>
-        <span class="text-[10px] uppercase tracking-widest font-bold text-primary">Windows Only — Fully Offline</span>
+<section class="min-h-screen flex items-center px-6 md:px-12 lg:px-24 py-16 relative">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
+    <div class="lg:col-span-5 space-y-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 ghost-border anim-1">
+            <span class="w-2 h-2 rounded-full bg-primary" style="animation:pulse 2s ease-in-out infinite"></span>
+            <span class="text-[10px] uppercase tracking-widest font-bold text-primary">Windows Only — Drag &amp; Drop</span>
+        </div>
+        <h1 class="font-display text-5xl md:text-6xl font-extrabold tracking-tighter leading-[1.08] anim-2">
+            Batch convert images to <span class="gradient-text">WebP in seconds.</span>
+        </h1>
+        <p class="text-lg text-zinc-400 max-w-md anim-3">Drag in PNG, JPEG, or entire folder trees. Get optimised WebP output with resize support and full folder structure preserved.</p>
+        <div class="flex flex-wrap gap-4 anim-4">
+            <a class="primary-gradient text-on-primary-container px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 active:scale-95 transition-all shadow-[0_0_32px_rgba(105,218,255,0.28)]" href="#pricing">Get Bulk WebP</a>
+            <a class="bg-white/5 ghost-border text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#features">See Features</a>
+        </div>
     </div>
-    <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] max-w-4xl anim-2">
-        Batch convert images to <span class="gradient-text">WebP in seconds.</span>
-    </h1>
-    <p class="mt-6 text-lg text-zinc-400 max-w-xl anim-3">Drag in PNG, JPEG, and other images — get optimised WebP output. Resize, lossless mode, and folder structure preservation included.</p>
-    <div class="flex flex-wrap gap-4 justify-center mt-10 anim-4">
-        <a class="primary-gradient text-on-primary-container px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 active:scale-95 transition-all shadow-[0_0_32px_rgba(105,218,255,0.28)]" href="#pricing">Get Bulk WebP</a>
-        <a class="bg-white/5 ghost-border text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#features">See Features</a>
+    <div class="lg:col-span-7 flex flex-col items-center gap-6 anim-5">
+        <div class="w-full relative bg-surface-container-low rounded-xl overflow-hidden atmospheric-shadow ghost-border">
+            <div class="flex items-center justify-between px-4 py-2 bg-surface-container-high border-b border-outline-variant/20">
+                <div class="flex gap-1.5">
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                </div>
+                <div class="text-[10px] text-zinc-500 font-mono tracking-widest">BULK WEBP — CONVERTER</div>
+                <div class="w-8"></div>
+            </div>
+            <img alt="Bulk WebP desktop app screenshot" class="w-full aspect-video object-contain bg-surface-container-highest" src="./screenshot.png"/>
+        </div>
+        <div class="hero-card-wrapper w-full max-w-sm">
+            <div class="hero-card-inner relative w-full h-36" style="transform-style:preserve-3d">
+                <div class="hero-card absolute inset-0 p-5">
+                    <div class="card-shine"></div>
+                    <div class="text-[9px] font-mono text-primary/50 mb-3 uppercase tracking-widest">Conversion Stats — batch_2026</div>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-[11px] font-mono">
+                            <span class="text-zinc-500">input/  127 images</span>
+                            <span class="text-zinc-400">48.4 MB</span>
+                        </div>
+                        <div class="size-bar bg-zinc-700 w-full"></div>
+                        <div class="flex items-center justify-between text-[11px] font-mono">
+                            <span class="text-zinc-500">output/ 127 images</span>
+                            <span class="text-primary">12.1 MB</span>
+                        </div>
+                        <div class="size-bar bg-primary/60 w-1/4"></div>
+                        <div class="text-[10px] text-primary font-mono font-bold">75% smaller &#8595; 36.3 MB saved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2"><span>Scroll</span><div class="mouse-icon"></div></div>
+</div>
+<div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2"><span>Scroll</span><div class="mouse-icon"></div></div>
+</section>
+
+<section class="py-24 border-y border-white/5 px-6 md:px-12">
+<div class="max-w-4xl mx-auto text-center space-y-6 reveal">
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">The Problem</span>
+    <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">PNG and JPEG files are <span class="text-zinc-500">3–5x larger than they need to be</span> for the web. Bulk WebP converts them all in one drag-and-drop.</h2>
+    <p class="text-zinc-400 text-md max-w-2xl mx-auto">No per-image setup, no cloud uploads. Drop a folder tree and get the same structure back as optimised WebP.</p>
+</div>
 </section>
 
 <section class="py-24 px-6 md:px-12 lg:px-24" id="features">
-    <div class="text-center mb-16 reveal">
-        <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Features</span>
-        <h2 class="font-display mt-4 text-3xl md:text-4xl font-bold tracking-tight">Efficient. Fast. No nonsense.</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">drag_pan</span>
-            <h3 class="font-display font-bold text-xl mb-2">Drag &amp; Drop</h3>
-            <p class="text-sm text-zinc-400">Drop individual files or entire folders directly onto the app. No file picker dialogs, no fuss.</p>
+<div class="mb-16 max-w-3xl reveal">
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Features</span>
+    <h2 class="font-display mt-4 text-3xl md:text-4xl font-bold tracking-tight">Efficient. Fast. No nonsense.</h2>
+    <p class="mt-4 text-zinc-400 max-w-2xl">Everything you need to convert image libraries to WebP — with resize, lossless mode, and folder structure preservation.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl mx-auto">
+    <div class="md:col-span-2 lg:col-span-3 feature-card bg-surface-container-low p-8 rounded-xl ghost-border flex flex-col justify-between reveal">
+        <div>
+            <span class="material-symbols-outlined text-primary mb-4 text-3xl">folder_copy</span>
+            <h3 class="font-display text-xl font-bold mb-2">Preserve Folder Structure</h3>
+            <p class="text-sm text-zinc-400">Drop a complex folder tree and get it back intact in the output — every subfolder and nesting level mirrored. No manual reorganising after.</p>
         </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">photo_size_select_large</span>
-            <h3 class="font-display font-bold text-xl mb-2">Resize on Convert</h3>
-            <p class="text-sm text-zinc-400">Set a target width or height and resize every image during conversion. Proportions maintained automatically.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">high_quality</span>
-            <h3 class="font-display font-bold text-xl mb-2">Lossless Mode</h3>
-            <p class="text-sm text-zinc-400">Toggle lossless compression when quality is non-negotiable. Full WebP fidelity with no artefacts.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">folder_copy</span>
-            <h3 class="font-display font-bold text-xl mb-2">Preserve Folder Structure</h3>
-            <p class="text-sm text-zinc-400">When processing whole directories, the original folder hierarchy is mirrored in the output. No manual reorganising.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">image</span>
-            <h3 class="font-display font-bold text-xl mb-2">PNG, JPEG &amp; More</h3>
-            <p class="text-sm text-zinc-400">Supports common input formats including PNG, JPEG, BMP, TIFF, and GIF. All converted to WebP with one click.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">cloud_off</span>
-            <h3 class="font-display font-bold text-xl mb-2">Fully Offline</h3>
-            <p class="text-sm text-zinc-400">Everything runs on your machine. No uploads, no accounts, no internet connection required.</p>
+        <div class="mt-8 font-mono text-[11px] text-primary/60 bg-surface-container-highest p-4 rounded ghost-border space-y-1">
+            <div class="text-zinc-500">input/products/hero/img.png</div>
+            <div class="text-primary">&#8594; output/products/hero/img.webp</div>
+            <div class="text-zinc-500">input/blog/2026/photo.jpg</div>
+            <div class="text-primary">&#8594; output/blog/2026/photo.webp</div>
         </div>
     </div>
+    <div class="md:col-span-2 lg:col-span-3 feature-card bg-surface-container p-8 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary mb-4 text-3xl">photo_size_select_large</span>
+        <h3 class="font-display text-xl font-bold mb-2">Resize on Export</h3>
+        <p class="text-sm text-zinc-400">Set a max width and height and every image scales down to fit during conversion. Perfect for generating web-ready, display-optimised assets in one pass.</p>
+        <div class="mt-4 font-mono text-[11px] text-primary/70 bg-surface-container-lowest p-4 rounded ghost-border space-y-1">
+            <div>Max width: 1920px  Max height: 1080px</div>
+            <div class="text-primary">&#10003; Proportions maintained</div>
+        </div>
+    </div>
+    <div class="md:col-span-2 lg:col-span-2 feature-card bg-surface-container-low p-6 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary-dim mb-3">high_quality</span>
+        <h4 class="font-display font-bold">Lossless Mode</h4>
+        <p class="text-xs text-zinc-400 mt-1">Toggle lossless compression for full WebP fidelity with zero artefacts.</p>
+    </div>
+    <div class="md:col-span-2 lg:col-span-2 feature-card bg-surface-container-low p-6 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary-dim mb-3">image</span>
+        <h4 class="font-display font-bold">PNG, JPEG &amp; More</h4>
+        <p class="text-xs text-zinc-400 mt-1">Supports PNG, JPEG, BMP, TIFF, GIF — all converted to WebP in one click.</p>
+    </div>
+    <div class="md:col-span-2 lg:col-span-2 feature-card bg-surface-container-low p-6 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary-dim mb-3">drag_pan</span>
+        <h4 class="font-display font-bold">Drag &amp; Drop</h4>
+        <p class="text-xs text-zinc-400 mt-1">Drop individual files or entire folders directly onto the app. No file picker required.</p>
+    </div>
+</div>
 </section>
 
 <section class="py-24 px-6 md:px-12 lg:px-24" id="pricing">
-    <div class="text-center mb-16 reveal">
-        <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Pricing</span>
-        <h2 class="font-display mt-4 text-4xl font-black tracking-tighter">Simple. One-time. Yours.</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="feature-card bg-[#131313] p-10 rounded-xl ghost-border flex flex-col justify-between reveal">
-            <div>
-                <h3 class="font-display text-2xl font-bold mb-4">Personal</h3>
-                <ul class="space-y-3 text-zinc-400 text-sm">
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Single file or folder conversion</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> All input formats</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">block</span> Personal use only</li>
-                </ul>
-            </div>
-            <div class="mt-10 pt-6 border-t border-white/5">
-                <div class="font-display text-3xl font-black mb-6">Free</div>
-                <a class="block w-full text-center bg-white/5 ghost-border text-white py-3 rounded-full font-bold hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/bulkwebp-releases/releases/latest/download/BulkWebP-Setup.exe">Download Free</a>
-            </div>
+<div class="text-center mb-16 reveal">
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Pricing</span>
+    <h2 class="font-display mt-4 text-4xl font-black tracking-tighter">Simple. One-time. Yours.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="feature-card bg-surface-container-low p-10 rounded-xl ghost-border flex flex-col justify-between reveal">
+        <div>
+            <h3 class="font-display text-2xl font-bold mb-4">Personal</h3>
+            <ul class="space-y-4 text-zinc-400 text-sm">
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Single file or folder conversion</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> All input formats — PNG, JPEG, BMP, GIF</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Up to 25 images per run</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">block</span> Personal, non-commercial use only</li>
+            </ul>
         </div>
-        <div class="feature-card bg-[#1a1a1a] p-10 rounded-xl border-2 border-primary/20 flex flex-col justify-between relative overflow-hidden reveal">
-            <div class="absolute top-4 right-4 primary-gradient text-on-primary-container px-3 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase">Pro</div>
-            <div>
-                <h3 class="font-display text-2xl font-bold mb-4">Bulk WebP Pro</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex items-center gap-3 text-primary font-semibold"><span class="material-symbols-outlined text-sm">bolt</span> Unlimited image processing</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Resize + lossless mode</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Preserve folder structure</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> One-time license key</li>
-                </ul>
-            </div>
-            <div class="mt-10 pt-6 border-t border-white/5">
-                <div class="font-display text-3xl font-black mb-1">$19 <span class="text-sm font-normal text-zinc-400">one-time</span></div>
-                <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-6">Launch Price</div>
-                <a class="block w-full text-center primary-gradient text-on-primary-container py-3 rounded-full font-bold hover:brightness-110 transition-all shadow-[0_0_24px_rgba(105,218,255,0.2)]" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/696d9c4e-ff0c-4e39-9186-21d5ff21c03d">Buy Bulk WebP Pro</a>
-            </div>
+        <div class="mt-12 pt-8 border-t border-white/5">
+            <div class="font-display text-3xl font-black mb-6">$0 <span class="text-sm font-normal text-zinc-400">/ Always Free</span></div>
+            <a class="block w-full text-center bg-white/5 ghost-border text-white py-3 rounded-full font-bold hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/bulkwebp-releases/releases/latest/download/BulkWebP-Setup.exe">Download Personal</a>
         </div>
     </div>
+    <div class="feature-card bg-surface-container p-10 rounded-xl border-2 border-primary/20 atmospheric-shadow flex flex-col justify-between relative overflow-hidden reveal">
+        <div class="absolute top-4 right-4 primary-gradient text-on-primary-container px-3 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase">Pro</div>
+        <div>
+            <h3 class="font-display text-2xl font-bold mb-4">Bulk WebP Pro</h3>
+            <ul class="space-y-4 text-sm">
+                <li class="flex items-center gap-3 text-primary font-semibold"><span class="material-symbols-outlined text-sm">bolt</span> Unlimited image processing — no cap</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Resize on export (max width &amp; height)</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Preserve full folder structure</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Commercial license + one-time key</li>
+            </ul>
+        </div>
+        <div class="mt-12 pt-8 border-t border-white/5">
+            <div class="font-display text-3xl font-black mb-2">$19 <span class="text-sm font-normal text-zinc-400">/ One-Time License</span></div>
+            <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-6">Launch Price</div>
+            <a class="block w-full text-center primary-gradient text-on-primary-container py-3 rounded-full font-bold hover:brightness-110 active:scale-95 transition-all shadow-[0_0_24px_rgba(105,218,255,0.2)]" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/696d9c4e-ff0c-4e39-9186-21d5ff21c03d">Upgrade to Pro — Unlimited + Resize + Structure</a>
+        </div>
+    </div>
+</div>
 </section>
 
-<section class="py-24 text-center px-6 md:px-12">
-    <div class="cta-box glass-panel p-12 rounded-3xl ghost-border max-w-4xl mx-auto relative overflow-hidden reveal">
-        <h2 class="font-display text-4xl font-black tracking-tighter mb-4 relative z-10">Smaller files. Faster sites. One click.</h2>
-        <p class="text-lg text-zinc-400 mb-8 max-w-xl mx-auto relative z-10">Convert entire image libraries to WebP in seconds — offline, with no size limits and full folder structure preservation.</p>
-        <a class="primary-gradient text-on-primary-container px-10 py-4 rounded-full font-bold text-lg hover:brightness-110 transition-all inline-block relative z-10" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/696d9c4e-ff0c-4e39-9186-21d5ff21c03d">Get Bulk WebP Pro — $19</a>
+<section class="py-24 text-center px-6 md:px-12" id="download">
+<div class="cta-box glass-panel p-12 md:p-20 rounded-3xl ghost-border max-w-5xl mx-auto relative overflow-hidden reveal">
+    <h2 class="font-display text-4xl md:text-5xl font-black tracking-tighter mb-8 relative z-10">Smaller files. Faster sites. One click.</h2>
+    <p class="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto relative z-10">Use Personal free for up to 25 images, then upgrade to Pro for unlimited processing, resize, and commercial rights.</p>
+    <a class="primary-gradient text-on-primary-container px-12 py-5 rounded-full font-black text-xl hover:brightness-110 hover:shadow-[0_0_48px_rgba(105,218,255,0.35)] transition-all inline-block relative z-10" href="#pricing">Compare Personal and Pro</a>
+    <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-8 text-zinc-500 text-xs font-bold tracking-widest uppercase relative z-10">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">security</span> Secure Checkout</div>
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">cloud_off</span> Fully Offline</div>
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">key</span> One-Time License</div>
     </div>
+</div>
 </section>
 
 </main>
+
 <footer class="w-full border-t border-white/5 bg-[#030306]">
-    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
-        <div class="mb-4 md:mb-0">
-            <div class="font-display text-lg font-black text-zinc-200 tracking-tighter mb-1">Bulk WebP</div>
-            <p class="text-xs uppercase tracking-widest text-zinc-600">© 2026 All rights reserved.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-8">
-            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../">All Apps</a>
-            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="#pricing">Buy Pro</a>
-        </div>
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-7xl mx-auto">
+    <div class="mb-6 md:mb-0">
+        <div class="font-display text-lg font-black text-zinc-200 tracking-tighter mb-2">Bulk WebP</div>
+        <p class="text-xs uppercase tracking-widest text-zinc-600">© 2026 All rights reserved.</p>
     </div>
+    <div class="flex flex-wrap justify-center gap-8">
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../">All Apps</a>
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../privacy.html">Privacy Policy</a>
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../terms.html">Terms of Service</a>
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="#pricing">Buy Pro</a>
+    </div>
+</div>
 </footer>
-<script src="../hub.js"></script>
+
+<script>
+    const cursor = document.querySelector(".cursor");
+    document.addEventListener("mousemove", e => { cursor.style.left = e.clientX + "px"; cursor.style.top = e.clientY + "px"; });
+    document.querySelectorAll("a, button, .feature-card").forEach(el => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("active"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("active"));
+    });
+    const revealOnScroll = () => { document.querySelectorAll(".reveal").forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add("visible"); }); };
+    window.addEventListener("scroll", revealOnScroll); revealOnScroll();
+    document.addEventListener("mousemove", e => {
+        const x = e.clientX / window.innerWidth, y = e.clientY / window.innerHeight;
+        document.querySelectorAll(".floating-orb").forEach((orb, i) => { orb.style.transform = `translate(${x*(i+1)*16}px, ${y*(i+1)*16}px)`; });
+    });
+    const nav = document.getElementById("main-nav");
+    window.addEventListener("scroll", () => { nav.style.background = window.scrollY > 60 ? "rgba(3,3,6,0.96)" : "rgba(5,5,10,0.75)"; });
+</script>
 </body>
 </html>

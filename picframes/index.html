@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PicFrames — Frame, Mask &amp; Export Images | pjecuacion</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#69daff","primary-dim":"#00c0ea","surface":"#0e0e0e","surface-container-low":"#131313","surface-container":"#1a1a1a","surface-container-high":"#20201f","on-primary-container":"#004050","tertiary":"#e6a7ff"},fontFamily:{display:["'Space Grotesk'","Inter","sans-serif"]}}}}</script>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: { extend: {
+        "colors": {
+            "primary": "#69daff", "primary-dim": "#00c0ea", "primary-fixed": "#00cffc",
+            "on-primary-container": "#004050", "surface": "#0e0e0e",
+            "surface-container-lowest": "#000000", "surface-container-low": "#131313",
+            "surface-container": "#1a1a1a", "surface-container-high": "#20201f",
+            "surface-container-highest": "#262626", "outline-variant": "#484847",
+            "tertiary": "#e6a7ff"
+        },
+        "fontFamily": { "display": ["'Space Grotesk'", "Inter", "sans-serif"] }
+    }}
+}
+</script>
 <link rel="icon" type="image/png" href="../favicon.png"/>
 <link href="../shared.css" rel="stylesheet"/>
 <style>
-.feature-card{transition:transform .35s ease,box-shadow .35s ease;position:relative;overflow:hidden;}
-.feature-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transition:transform .35s ease;}
-.feature-card:hover::before{transform:scaleX(1);}.feature-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(105,218,255,0.1);}
-.cta-box::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(105,218,255,0.1) 0%,transparent 60%);animation:ctaPulse 5s ease-in-out infinite;pointer-events:none;}
-@keyframes ctaPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.9}}
+    .feature-card { transition: transform .35s ease, box-shadow .35s ease; position: relative; overflow: hidden; }
+    .feature-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform .35s ease; }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(105,218,255,0.1); }
+    .hero-card-wrapper { perspective: 1000px; }
+    .hero-card-inner { animation: cardFloat 7s ease-in-out infinite; }
+    @keyframes cardFloat { 0%,100%{transform:rotateY(-12deg) rotateX(4deg) translateY(0)} 50%{transform:rotateY(12deg) rotateX(-4deg) translateY(-16px)} }
+    .card-shine { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent); animation: shine 5s ease-in-out infinite; }
+    @keyframes shine { 0%,100%{left:-100%} 50%{left:100%} }
+    .cta-box::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(105,218,255,0.1) 0%, transparent 60%); animation: ctaPulse 5s ease-in-out infinite; pointer-events: none; }
+    @keyframes ctaPulse { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.2);opacity:.9} }
+    .anim-5{opacity:0;animation:fadeInUp .9s ease .65s forwards}
+    .hero-card { background: rgba(19,19,19,0.9); border: 1px solid rgba(105,218,255,0.15); border-radius: 12px; overflow: hidden; }
 </style>
 </head>
 <body class="bg-[#0e0e0e] selection:bg-primary selection:text-on-primary-container">
@@ -23,131 +47,218 @@
 <div class="grid-lines"></div>
 
 <nav class="fixed top-0 w-full z-50 bg-[#05050a]/75 backdrop-blur-xl border-b border-[#69daff]/8 transition-all duration-300" id="main-nav">
-    <div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
-        <a class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-1" href="../"><span class="material-symbols-outlined text-base">arrow_back</span> All Apps</a>
-        <span class="font-display text-lg font-bold tracking-tighter text-white uppercase">PicFrames</span>
-        <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 active:scale-95 transition-all" href="#pricing">Buy Pro — $14</a>
-    </div>
+<div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+    <a class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-1" href="../"><span class="material-symbols-outlined text-base">arrow_back</span> All Apps</a>
+    <span class="font-display text-lg font-bold tracking-tighter text-white uppercase hidden md:block">PicFrames</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+    <a class="text-zinc-400 hover:text-white transition-colors text-sm font-medium" href="#features">Features</a>
+    <a class="text-zinc-400 hover:text-white transition-colors text-sm font-medium" href="#pricing">Pricing</a>
+    <a class="text-zinc-400 hover:text-white transition-colors text-sm font-medium" href="#download">Download</a>
+</div>
+<a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 active:scale-95 transition-all" href="#pricing">Buy Pro — $14</a>
+</div>
 </nav>
 
-<main class="pt-20">
+<main class="pt-20" id="top">
 
-<section class="min-h-[80vh] flex flex-col items-center justify-center text-center px-6 py-24 relative">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 ghost-border mb-8 anim-1">
-        <span class="w-2 h-2 rounded-full bg-primary" style="animation:pulse 2s ease-in-out infinite"></span>
-        <span class="text-[10px] uppercase tracking-widest font-bold text-primary">Windows Only — Fully Offline</span>
+<section class="min-h-screen flex items-center px-6 md:px-12 lg:px-24 py-16 relative">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full max-w-7xl mx-auto">
+    <div class="lg:col-span-5 space-y-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 ghost-border anim-1">
+            <span class="w-2 h-2 rounded-full bg-primary" style="animation:pulse 2s ease-in-out infinite"></span>
+            <span class="text-[10px] uppercase tracking-widest font-bold text-primary">Windows Only — AI Runs Offline</span>
+        </div>
+        <h1 class="font-display text-5xl md:text-6xl font-extrabold tracking-tighter leading-[1.08] anim-2">
+            Frame, mask &amp; export images <span class="gradient-text">in seconds.</span>
+        </h1>
+        <p class="text-lg text-zinc-400 max-w-md anim-3">Apply circle, square, or rounded-square masks to any batch of images. AI background removal built in — no cloud, no API keys.</p>
+        <div class="flex flex-wrap gap-4 anim-4">
+            <a class="primary-gradient text-on-primary-container px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 active:scale-95 transition-all shadow-[0_0_32px_rgba(105,218,255,0.28)]" href="#pricing">Get PicFrames</a>
+            <a class="bg-white/5 ghost-border text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#features">See Features</a>
+        </div>
     </div>
-    <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] max-w-4xl anim-2">
-        Frame, mask &amp; export images <span class="gradient-text">in seconds.</span>
-    </h1>
-    <p class="mt-6 text-lg text-zinc-400 max-w-xl anim-3">Apply circle, square, or rounded-square masks to any image. AI background removal built in. Export as transparent PNG or ICO.</p>
-    <div class="flex flex-wrap gap-4 justify-center mt-10 anim-4">
-        <a class="primary-gradient text-on-primary-container px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 active:scale-95 transition-all shadow-[0_0_32px_rgba(105,218,255,0.28)]" href="#pricing">Get PicFrames</a>
-        <a class="bg-white/5 ghost-border text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#features">See Features</a>
+    <div class="lg:col-span-7 flex flex-col items-center gap-6 anim-5">
+        <div class="w-full relative bg-surface-container-low rounded-xl overflow-hidden atmospheric-shadow ghost-border">
+            <div class="flex items-center justify-between px-4 py-2 bg-surface-container-high border-b border-outline-variant/20">
+                <div class="flex gap-1.5">
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                </div>
+                <div class="text-[10px] text-zinc-500 font-mono tracking-widest">PICFRAMES — IMAGE PROCESSOR</div>
+                <div class="w-8"></div>
+            </div>
+            <img alt="PicFrames desktop app screenshot" class="w-full aspect-video object-contain bg-surface-container-highest" src="./screenshot.jpg"/>
+        </div>
+        <div class="hero-card-wrapper w-full max-w-sm">
+            <div class="hero-card-inner relative w-full h-36" style="transform-style:preserve-3d">
+                <div class="hero-card absolute inset-0 p-5">
+                    <div class="card-shine"></div>
+                    <div class="text-[9px] font-mono text-primary/50 mb-2 uppercase tracking-widest">Output / batch_run_024</div>
+                    <div class="font-mono text-[11px] text-primary/75 space-y-1">
+                        <div class="text-primary">&#10003; 42 images processed</div>
+                        <div class="text-zinc-400">&#10003; Rounded-square mask applied</div>
+                        <div class="text-zinc-400">&#10003; Backgrounds removed (rembg)</div>
+                        <div class="text-zinc-500">&#8594; output/ — 42 transparent PNGs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2"><span>Scroll</span><div class="mouse-icon"></div></div>
+</div>
+<div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2"><span>Scroll</span><div class="mouse-icon"></div></div>
+</section>
+
+<section class="py-24 border-y border-white/5 px-6 md:px-12">
+<div class="max-w-4xl mx-auto text-center space-y-6 reveal">
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">The Problem</span>
+    <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">Profile pictures, icons, and thumbnails all need <span class="text-zinc-500">cropping, masking, and background removal</span>. PicFrames does all three in one pass.</h2>
+    <p class="text-zinc-400 text-md max-w-2xl mx-auto">Local AI background removal via rembg. No uploads, no subscriptions, no waiting. Just clean exports ready to use.</p>
+</div>
 </section>
 
 <section class="py-24 px-6 md:px-12 lg:px-24" id="features">
-    <div class="text-center mb-16 reveal">
-        <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Features</span>
-        <h2 class="font-display mt-4 text-3xl md:text-4xl font-bold tracking-tight">Everything you need for image framing.</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">crop_free</span>
-            <h3 class="font-display font-bold text-xl mb-2">Three Frame Shapes</h3>
-            <p class="text-sm text-zinc-400">Circle, square, and rounded-square masks applied instantly. Perfect for profile pictures, icons, and thumbnails.</p>
+<div class="mb-16 max-w-3xl reveal">
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Features</span>
+    <h2 class="font-display mt-4 text-3xl md:text-4xl font-bold tracking-tight">Everything you need for professional image framing.</h2>
+    <p class="mt-4 text-zinc-400 max-w-2xl">Three mask shapes, AI background removal, ICO export, and instant preview — all without leaving the app.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl mx-auto">
+    <div class="md:col-span-2 lg:col-span-3 feature-card bg-surface-container-low p-8 rounded-xl ghost-border flex flex-col justify-between reveal">
+        <div>
+            <span class="material-symbols-outlined text-primary mb-4 text-3xl">auto_awesome</span>
+            <h3 class="font-display text-xl font-bold mb-2">AI Background Removal</h3>
+            <p class="text-sm text-zinc-400">Powered by rembg — one click strips backgrounds from every image in your batch using a local AI model. No cloud, no green screen setup.</p>
         </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">auto_awesome</span>
-            <h3 class="font-display font-bold text-xl mb-2">AI Background Removal</h3>
-            <p class="text-sm text-zinc-400">Powered by rembg — remove backgrounds automatically before masking. Runs entirely offline, no third-party API needed.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">grid_view</span>
-            <h3 class="font-display font-bold text-xl mb-2">Transparent PNG Export</h3>
-            <p class="text-sm text-zinc-400">Output crisp transparent PNGs ready for any design workflow. No white box, no compression artefacts.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">desktop_windows</span>
-            <h3 class="font-display font-bold text-xl mb-2">ICO Export</h3>
-            <p class="text-sm text-zinc-400">Generate multi-size Windows ICO files directly. Ideal for app icons and shortcut thumbnails.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">cloud_off</span>
-            <h3 class="font-display font-bold text-xl mb-2">Fully Offline</h3>
-            <p class="text-sm text-zinc-400">Everything runs on your machine. No uploads, no accounts, no internet connection required.</p>
-        </div>
-        <div class="feature-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">bolt</span>
-            <h3 class="font-display font-bold text-xl mb-2">Instant Preview</h3>
-            <p class="text-sm text-zinc-400">See exactly how your framed image will look before exporting. Adjust and re-export in seconds.</p>
+        <div class="mt-8 h-24 bg-surface-container-high rounded-md overflow-hidden relative flex items-center justify-center gap-6 px-6">
+            <div class="text-center">
+                <div class="w-12 h-12 rounded-full bg-zinc-600 mx-auto mb-1"></div>
+                <div class="text-[9px] text-zinc-500 font-mono">input.jpg</div>
+            </div>
+            <span class="material-symbols-outlined text-primary text-xl">arrow_forward</span>
+            <div class="text-center">
+                <div class="w-12 h-12 rounded-full border-2 border-primary/40 mx-auto mb-1" style="background:repeating-conic-gradient(#333 0% 25%,#222 0% 50%) 0 0/8px 8px"></div>
+                <div class="text-[9px] text-primary/70 font-mono">output.png</div>
+            </div>
         </div>
     </div>
+    <div class="md:col-span-2 lg:col-span-3 feature-card bg-surface-container p-8 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary mb-4 text-3xl">crop_free</span>
+        <h3 class="font-display text-xl font-bold mb-2">Three Frame Shapes</h3>
+        <p class="text-sm text-zinc-400">Circle, square, and rounded-square masks. Rounded Square is Pro-exclusive with adjustable corner radius from 5–50% — the polished app-icon aesthetic.</p>
+        <div class="mt-6 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-[9px] text-primary font-mono">circle</div>
+            <div class="w-12 h-12 bg-primary/20 border border-primary/30 flex items-center justify-center text-[9px] text-primary font-mono">square</div>
+            <div class="w-12 h-12 rounded-xl bg-primary/30 border border-primary/50 flex items-center justify-center text-[9px] text-primary font-mono">r-sq</div>
+            <span class="primary-gradient text-on-primary-container text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Pro</span>
+        </div>
+    </div>
+    <div class="md:col-span-2 lg:col-span-2 feature-card bg-surface-container-low p-6 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary-dim mb-3">desktop_windows</span>
+        <h4 class="font-display font-bold">ICO Export</h4>
+        <p class="text-xs text-zinc-400 mt-1">Generate multi-size Windows ICO files (16–256 px) for app icons in one run. Pro feature.</p>
+    </div>
+    <div class="md:col-span-2 lg:col-span-2 feature-card bg-surface-container-low p-6 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary-dim mb-3">grid_view</span>
+        <h4 class="font-display font-bold">Transparent PNG</h4>
+        <p class="text-xs text-zinc-400 mt-1">Crisp transparent PNGs ready for any design workflow, no white box or compression artefacts.</p>
+    </div>
+    <div class="md:col-span-2 lg:col-span-2 feature-card bg-surface-container-low p-6 rounded-xl ghost-border reveal">
+        <span class="material-symbols-outlined text-primary-dim mb-3">bolt</span>
+        <h4 class="font-display font-bold">Instant Preview</h4>
+        <p class="text-xs text-zinc-400 mt-1">See the framed result before exporting. Adjust mask shape and radius and re-export in seconds.</p>
+    </div>
+</div>
 </section>
 
 <section class="py-24 px-6 md:px-12 lg:px-24" id="pricing">
-    <div class="text-center mb-16 reveal">
-        <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Pricing</span>
-        <h2 class="font-display mt-4 text-4xl font-black tracking-tighter">Simple. One-time. Yours.</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="feature-card bg-[#131313] p-10 rounded-xl ghost-border flex flex-col justify-between reveal">
-            <div>
-                <h3 class="font-display text-2xl font-bold mb-4">Personal</h3>
-                <ul class="space-y-3 text-zinc-400 text-sm">
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Circle &amp; square frames</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Transparent PNG export</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">block</span> Personal use only</li>
-                </ul>
-            </div>
-            <div class="mt-10 pt-6 border-t border-white/5">
-                <div class="font-display text-3xl font-black mb-6">Free</div>
-                <a class="block w-full text-center bg-white/5 ghost-border text-white py-3 rounded-full font-bold hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/picframes-releases/releases/latest/download/PicFrames-Setup.exe">Download Free</a>
-            </div>
+<div class="text-center mb-16 reveal">
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Pricing</span>
+    <h2 class="font-display mt-4 text-4xl font-black tracking-tighter">Simple. One-time. Yours.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div class="feature-card bg-surface-container-low p-10 rounded-xl ghost-border flex flex-col justify-between reveal">
+        <div>
+            <h3 class="font-display text-2xl font-bold mb-4">Personal</h3>
+            <ul class="space-y-4 text-zinc-400 text-sm">
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Circle &amp; square frame shapes</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Transparent PNG export</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">check</span> Up to 10 images per batch</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-zinc-600 text-sm">block</span> Personal, non-commercial use only</li>
+            </ul>
         </div>
-        <div class="feature-card bg-[#1a1a1a] p-10 rounded-xl border-2 border-primary/20 flex flex-col justify-between relative overflow-hidden reveal">
-            <div class="absolute top-4 right-4 primary-gradient text-on-primary-container px-3 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase">Pro</div>
-            <div>
-                <h3 class="font-display text-2xl font-bold mb-4">PicFrames Pro</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex items-center gap-3 text-primary font-semibold"><span class="material-symbols-outlined text-sm">bolt</span> Rounded-square frame shape</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> AI background removal (rembg)</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> ICO export for Windows icons</li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Unlimited use + one-time license key</li>
-                </ul>
-            </div>
-            <div class="mt-10 pt-6 border-t border-white/5">
-                <div class="font-display text-3xl font-black mb-1">$9.99 <span class="text-sm font-normal text-zinc-400">one-time</span></div>
-                <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-6">Launch Price</div>
-                <a class="block w-full text-center primary-gradient text-on-primary-container py-3 rounded-full font-bold hover:brightness-110 transition-all shadow-[0_0_24px_rgba(105,218,255,0.2)]" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/23a0f5a9-4f13-445d-baac-71b0052d5e71">Buy PicFrames Pro</a>
-            </div>
+        <div class="mt-12 pt-8 border-t border-white/5">
+            <div class="font-display text-3xl font-black mb-6">$0 <span class="text-sm font-normal text-zinc-400">/ Always Free</span></div>
+            <a class="block w-full text-center bg-white/5 ghost-border text-white py-3 rounded-full font-bold hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/picframes-releases/releases/latest/download/PicFrames-Setup.exe">Download Personal</a>
         </div>
     </div>
+    <div class="feature-card bg-surface-container p-10 rounded-xl border-2 border-primary/20 atmospheric-shadow flex flex-col justify-between relative overflow-hidden reveal">
+        <div class="absolute top-4 right-4 primary-gradient text-on-primary-container px-3 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase">Pro</div>
+        <div>
+            <h3 class="font-display text-2xl font-bold mb-4">PicFrames Pro</h3>
+            <ul class="space-y-4 text-sm">
+                <li class="flex items-center gap-3 text-primary font-semibold"><span class="material-symbols-outlined text-sm">bolt</span> Rounded-square shape with adjustable radius</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> AI background removal (rembg, fully offline)</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> ICO export for Windows icons</li>
+                <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check</span> Unlimited batch + commercial license</li>
+            </ul>
+        </div>
+        <div class="mt-12 pt-8 border-t border-white/5">
+            <div class="font-display text-3xl font-black mb-2">$14 <span class="text-sm font-normal text-zinc-400">/ One-Time License</span></div>
+            <div class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-6">Launch Price</div>
+            <a class="block w-full text-center primary-gradient text-on-primary-container py-3 rounded-full font-bold hover:brightness-110 active:scale-95 transition-all shadow-[0_0_24px_rgba(105,218,255,0.2)]" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/23a0f5a9-4f13-445d-baac-71b0052d5e71">Upgrade to Pro — AI + ICO + Unlimited</a>
+        </div>
+    </div>
+</div>
 </section>
 
-<section class="py-24 text-center px-6 md:px-12">
-    <div class="cta-box glass-panel p-12 rounded-3xl ghost-border max-w-4xl mx-auto relative overflow-hidden reveal">
-        <h2 class="font-display text-4xl font-black tracking-tighter mb-4 relative z-10">Mask. Resize. Export. Done.</h2>
-        <p class="text-lg text-zinc-400 mb-8 max-w-xl mx-auto relative z-10">Professional image framing with AI background removal — all in a single offline Windows app.</p>
-        <a class="primary-gradient text-on-primary-container px-10 py-4 rounded-full font-bold text-lg hover:brightness-110 transition-all inline-block relative z-10" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/23a0f5a9-4f13-445d-baac-71b0052d5e71">Get PicFrames Pro — $14</a>
+<section class="py-24 text-center px-6 md:px-12" id="download">
+<div class="cta-box glass-panel p-12 md:p-20 rounded-3xl ghost-border max-w-5xl mx-auto relative overflow-hidden reveal">
+    <h2 class="font-display text-4xl md:text-5xl font-black tracking-tighter mb-8 relative z-10">Mask. Remove. Export. Done.</h2>
+    <p class="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto relative z-10">Use Personal free for basic framing, then upgrade to Pro for AI backgrounds, ICO export, and no batch limits.</p>
+    <a class="primary-gradient text-on-primary-container px-12 py-5 rounded-full font-black text-xl hover:brightness-110 hover:shadow-[0_0_48px_rgba(105,218,255,0.35)] transition-all inline-block relative z-10" href="#pricing">Compare Personal and Pro</a>
+    <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-8 text-zinc-500 text-xs font-bold tracking-widest uppercase relative z-10">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">security</span> Secure Checkout</div>
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">cloud_off</span> AI Runs Offline</div>
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">key</span> One-Time License</div>
     </div>
+</div>
 </section>
 
 </main>
+
 <footer class="w-full border-t border-white/5 bg-[#030306]">
-    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
-        <div class="mb-4 md:mb-0">
-            <div class="font-display text-lg font-black text-zinc-200 tracking-tighter mb-1">PicFrames</div>
-            <p class="text-xs uppercase tracking-widest text-zinc-600">© 2026 All rights reserved.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-8">
-            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../">All Apps</a>
-            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="#pricing">Buy Pro</a>
-        </div>
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full max-w-7xl mx-auto">
+    <div class="mb-6 md:mb-0">
+        <div class="font-display text-lg font-black text-zinc-200 tracking-tighter mb-2">PicFrames</div>
+        <p class="text-xs uppercase tracking-widest text-zinc-600">© 2026 All rights reserved.</p>
     </div>
+    <div class="flex flex-wrap justify-center gap-8">
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../">All Apps</a>
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../privacy.html">Privacy Policy</a>
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="../terms.html">Terms of Service</a>
+        <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="#pricing">Buy Pro</a>
+    </div>
+</div>
 </footer>
-<script src="../hub.js"></script>
+
+<script>
+    const cursor = document.querySelector(".cursor");
+    document.addEventListener("mousemove", e => { cursor.style.left = e.clientX + "px"; cursor.style.top = e.clientY + "px"; });
+    document.querySelectorAll("a, button, .feature-card").forEach(el => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("active"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("active"));
+    });
+    const revealOnScroll = () => { document.querySelectorAll(".reveal").forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add("visible"); }); };
+    window.addEventListener("scroll", revealOnScroll); revealOnScroll();
+    document.addEventListener("mousemove", e => {
+        const x = e.clientX / window.innerWidth, y = e.clientY / window.innerHeight;
+        document.querySelectorAll(".floating-orb").forEach((orb, i) => { orb.style.transform = `translate(${x*(i+1)*16}px, ${y*(i+1)*16}px)`; });
+    });
+    const nav = document.getElementById("main-nav");
+    window.addEventListener("scroll", () => { nav.style.background = window.scrollY > 60 ? "rgba(3,3,6,0.96)" : "rgba(5,5,10,0.75)"; });
+</script>
 </body>
 </html>
