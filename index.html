@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>pjecuacion — Windows Tools for Serious Workflows</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: { extend: {
+            colors: {
+                "primary": "#69daff", "primary-dim": "#00c0ea", "surface": "#0e0e0e",
+                "surface-container-low": "#131313", "surface-container": "#1a1a1a",
+                "surface-container-high": "#20201f", "on-primary-container": "#004050", "tertiary": "#e6a7ff"
+            },
+            fontFamily: { display: ["'Space Grotesk'", "Inter", "sans-serif"] }
+        }}
+    }
+</script>
+<link href="shared.css" rel="stylesheet"/>
+</head>
+<body class="bg-[#0e0e0e] selection:bg-primary selection:text-on-primary-container">
+
+<div class="cursor"></div>
+<div class="bg-animation">
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+</div>
+<div class="grid-lines"></div>
+
+<nav class="fixed top-0 w-full z-50 bg-[#05050a]/75 backdrop-blur-xl border-b border-[#69daff]/8 transition-all duration-300" id="main-nav">
+    <div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+        <a class="font-display text-xl font-bold tracking-tighter text-white uppercase" href="#">pjecuacion</a>
+        <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 active:scale-95 transition-all" href="ltd/">Get the Bundle — $59</a>
+    </div>
+</nav>
+
+<main class="pt-20">
+
+    <!-- Hero -->
+    <section class="min-h-[75vh] flex flex-col items-center justify-center text-center px-6 py-24 relative">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 ghost-border mb-8 anim-1">
+            <span class="w-2 h-2 rounded-full bg-primary" style="animation:pulse 2s ease-in-out infinite"></span>
+            <span class="text-[10px] uppercase tracking-widest font-bold text-primary">4 Windows Desktop Apps — One-Time Purchase</span>
+        </div>
+        <h1 class="font-display text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] max-w-4xl anim-2">
+            Windows tools built for <span class="gradient-text">serious workflows.</span>
+        </h1>
+        <p class="mt-6 text-lg text-zinc-400 max-w-xl anim-3">
+            Offline-first desktop utilities for media processing, image framing, document conversion, and image optimisation. No subscriptions. No cloud.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center mt-10 anim-4">
+            <a class="primary-gradient text-on-primary-container px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 active:scale-95 transition-all shadow-[0_0_32px_rgba(105,218,255,0.28)]" href="ltd/">Get All 4 for $59</a>
+            <a class="bg-white/5 ghost-border text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all" href="#apps">Browse Apps</a>
+        </div>
+        <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2">
+            <span>Scroll</span>
+            <div class="mouse-icon"></div>
+        </div>
+    </section>
+
+    <!-- Apps Grid -->
+    <section class="py-24 px-6 md:px-12 lg:px-24" id="apps">
+        <div class="text-center mb-16 reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">The Suite</span>
+            <h2 class="font-display mt-4 text-3xl md:text-4xl font-bold tracking-tight">Four tools. One focused purpose each.</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+
+            <div class="app-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+                <div class="flex items-start justify-between mb-4">
+                    <div><span class="material-symbols-outlined text-primary text-3xl mb-2 block">graphic_eq</span>
+                    <h3 class="font-display text-2xl font-bold">EchoText</h3></div>
+                    <span class="price-badge text-primary font-bold text-sm px-3 py-1 rounded-full whitespace-nowrap">$29 one-time</span>
+                </div>
+                <p class="text-zinc-400 text-sm mb-4">Turn audio and video into word-level JSON, sentence clips, and unique PNG stills. Fully offline using Whisper models.</p>
+                <ul class="text-xs text-zinc-500 space-y-1.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Word-level timestamps &amp; confidence scores</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Sentence-level WAV/MP4 clips</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Unique still image extraction</li>
+                </ul>
+                <div class="flex gap-3">
+                    <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 transition-all" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/e7af0b0c-3956-4fa4-841b-96ec9c4f1b5e">Buy Pro</a>
+                    <a class="bg-white/5 ghost-border text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/EchoText">GitHub</a>
+                </div>
+            </div>
+
+            <div class="app-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+                <div class="flex items-start justify-between mb-4">
+                    <div><span class="material-symbols-outlined text-primary text-3xl mb-2 block">crop_free</span>
+                    <h3 class="font-display text-2xl font-bold">PicFrames</h3></div>
+                    <span class="price-badge text-primary font-bold text-sm px-3 py-1 rounded-full whitespace-nowrap">$14 one-time</span>
+                </div>
+                <p class="text-zinc-400 text-sm mb-4">Frame images with circle, square, or rounded-square masks. AI background removal included. Outputs transparent PNG or ICO.</p>
+                <ul class="text-xs text-zinc-500 space-y-1.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Circle, square &amp; rounded frame shapes</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> AI-powered background removal (rembg)</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> ICO output for Windows app icons</li>
+                </ul>
+                <div class="flex gap-3">
+                    <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 transition-all" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/23a0f5a9-4f13-445d-baac-71b0052d5e71">Buy Pro</a>
+                    <a class="bg-white/5 ghost-border text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/picframes">GitHub</a>
+                </div>
+            </div>
+
+            <div class="app-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+                <div class="flex items-start justify-between mb-4">
+                    <div><span class="material-symbols-outlined text-primary text-3xl mb-2 block">article</span>
+                    <h3 class="font-display text-2xl font-bold">MarkdownForge</h3></div>
+                    <span class="price-badge text-primary font-bold text-sm px-3 py-1 rounded-full whitespace-nowrap">$19 one-time</span>
+                </div>
+                <p class="text-zinc-400 text-sm mb-4">Convert documents, spreadsheets, presentations, images, and URLs to Markdown using Microsoft's MarkItDown library.</p>
+                <ul class="text-xs text-zinc-500 space-y-1.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> DOCX, XLSX, PPTX, PDF, images supported</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> URL-to-Markdown conversion</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Batch conversion (Pro) + HTML export</li>
+                </ul>
+                <div class="flex gap-3">
+                    <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 transition-all" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/808b8326-08f7-49c4-a2f0-0c508a718e4d">Buy Pro</a>
+                    <a class="bg-white/5 ghost-border text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/MarkdownForge">GitHub</a>
+                </div>
+            </div>
+
+            <div class="app-card bg-[#131313] p-8 rounded-xl ghost-border reveal">
+                <div class="flex items-start justify-between mb-4">
+                    <div><span class="material-symbols-outlined text-primary text-3xl mb-2 block">image</span>
+                    <h3 class="font-display text-2xl font-bold">Bulk WebP</h3></div>
+                    <span class="price-badge text-primary font-bold text-sm px-3 py-1 rounded-full whitespace-nowrap">$19 one-time</span>
+                </div>
+                <p class="text-zinc-400 text-sm mb-4">Batch-convert PNG, JPEG, and other images to WebP. Optional resize, lossless mode, and folder structure preservation.</p>
+                <ul class="text-xs text-zinc-500 space-y-1.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Drag-and-drop files or whole folders</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Lossless mode &amp; resize controls</li>
+                    <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size:14px">check</span> Preserve original folder structure</li>
+                </ul>
+                <div class="flex gap-3">
+                    <a class="primary-gradient text-on-primary-container px-5 py-2 rounded-full font-semibold text-sm hover:brightness-110 transition-all" href="https://pjecuacion.lemonsqueezy.com/checkout/buy/696d9c4e-ff0c-4e39-9186-21d5ff21c03d">Buy Pro</a>
+                    <a class="bg-white/5 ghost-border text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-white/10 transition-all" href="https://github.com/pjecuacion/bulk_webp">GitHub</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LTD Strip -->
+    <section class="py-20 px-6 md:px-12 ltd-strip">
+        <div class="max-w-5xl mx-auto text-center reveal">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Limited Time Offer</span>
+            <h2 class="font-display mt-4 text-3xl md:text-4xl font-black tracking-tighter">
+                All 4 apps for <span class="gradient-text">$59.</span>
+            </h2>
+            <p class="text-zinc-400 mt-4 mb-8 max-w-xl mx-auto">Individual prices add up to $81. Get the full suite at launch price, activate instantly, and never pay again.</p>
+            <a class="primary-gradient text-on-primary-container px-10 py-4 rounded-full font-black text-lg hover:brightness-110 hover:shadow-[0_0_48px_rgba(105,218,255,0.35)] transition-all inline-block" href="ltd/">
+                See the Bundle Deal →
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="w-full border-t border-white/5 bg-[#030306]">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+        <div class="mb-4 md:mb-0">
+            <div class="font-display text-lg font-black text-zinc-200 tracking-tighter mb-1">pjecuacion</div>
+            <p class="text-xs uppercase tracking-widest text-zinc-600">© 2026 All rights reserved.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8">
+            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="https://github.com/pjecuacion">GitHub</a>
+            <a class="text-xs uppercase tracking-widest text-zinc-600 hover:text-zinc-300 transition-colors" href="ltd/">Bundle Deal</a>
+        </div>
+    </div>
+</footer>
+
+<script src="hub.js"></script>
+</body>
+</html>
