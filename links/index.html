@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>pjecuacion — Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: { extend: {
+            colors: {
+                "primary": "#69daff", "primary-dim": "#00c0ea", "surface": "#0e0e0e",
+                "surface-container": "#1a1a1a", "on-primary-container": "#004050"
+            },
+            fontFamily: { display: ["'Space Grotesk'", "Inter", "sans-serif"] }
+        }}
+    }
+</script>
+<link href="../shared.css" rel="stylesheet"/>
+<style>
+    .link-card {
+        transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        border-left: 2px solid transparent;
+    }
+    .link-card:hover {
+        transform: translateX(6px);
+        box-shadow: 0 8px 32px rgba(105,218,255,0.08);
+        border-left-color: var(--primary);
+    }
+    .link-card:hover .arrow-icon { transform: translateX(4px); }
+    .arrow-icon { transition: transform .3s ease; }
+    .avatar-ring {
+        background: linear-gradient(135deg, #69daff, #e6a7ff);
+        padding: 2px;
+        border-radius: 50%;
+    }
+    .avatar-inner {
+        background: #0e0e0e;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+</head>
+<body class="bg-[#0e0e0e] min-h-screen selection:bg-primary selection:text-on-primary-container">
+
+<div class="cursor"></div>
+<div class="bg-animation">
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+</div>
+<div class="grid-lines"></div>
+
+<main class="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <div class="w-full max-w-md">
+
+        <!-- Profile -->
+        <div class="text-center mb-10 anim-1">
+            <div class="avatar-ring inline-block mb-5">
+                <div class="avatar-inner">
+                    <span class="font-display text-3xl font-black text-primary">P</span>
+                </div>
+            </div>
+            <h1 class="font-display text-2xl font-bold tracking-tight">pjecuacion</h1>
+            <p class="text-zinc-400 text-sm mt-1">Windows tools for serious workflows</p>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-col gap-3 anim-2">
+
+            <a class="link-card glass-panel ghost-border rounded-xl px-5 py-4 flex items-center gap-4" href="../">
+                <span class="material-symbols-outlined text-primary text-2xl shrink-0">grid_view</span>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Browse All Apps</div>
+                    <div class="text-zinc-500 text-xs">pjecuacion.github.io</div>
+                </div>
+                <span class="material-symbols-outlined arrow-icon text-zinc-600 text-xl shrink-0">arrow_forward</span>
+            </a>
+
+            <a class="link-card glass-panel ghost-border rounded-xl px-5 py-4 flex items-center gap-4" href="../echotext/">
+                <span class="material-symbols-outlined text-primary text-2xl shrink-0">graphic_eq</span>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">EchoText</div>
+                    <div class="text-zinc-500 text-xs">Audio &amp; video → JSON, clips, stills</div>
+                </div>
+                <span class="material-symbols-outlined arrow-icon text-zinc-600 text-xl shrink-0">arrow_forward</span>
+            </a>
+
+            <a class="link-card glass-panel ghost-border rounded-xl px-5 py-4 flex items-center gap-4" href="../picframes/">
+                <span class="material-symbols-outlined text-primary text-2xl shrink-0">crop_free</span>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">PicFrames</div>
+                    <div class="text-zinc-500 text-xs">Frame images · AI background removal</div>
+                </div>
+                <span class="material-symbols-outlined arrow-icon text-zinc-600 text-xl shrink-0">arrow_forward</span>
+            </a>
+
+            <a class="link-card glass-panel ghost-border rounded-xl px-5 py-4 flex items-center gap-4" href="../markdownforge/">
+                <span class="material-symbols-outlined text-primary text-2xl shrink-0">article</span>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">MarkdownForge</div>
+                    <div class="text-zinc-500 text-xs">Docs, sheets &amp; URLs → Markdown</div>
+                </div>
+                <span class="material-symbols-outlined arrow-icon text-zinc-600 text-xl shrink-0">arrow_forward</span>
+            </a>
+
+            <a class="link-card glass-panel ghost-border rounded-xl px-5 py-4 flex items-center gap-4" href="../bulkwebp/">
+                <span class="material-symbols-outlined text-primary text-2xl shrink-0">image</span>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Bulk WebP</div>
+                    <div class="text-zinc-500 text-xs">Batch-convert images to WebP</div>
+                </div>
+                <span class="material-symbols-outlined arrow-icon text-zinc-600 text-xl shrink-0">arrow_forward</span>
+            </a>
+
+            <a class="link-card glass-panel ghost-border rounded-xl px-5 py-4 flex items-center gap-4" href="https://github.com/pjecuacion" target="_blank" rel="noopener noreferrer">
+                <svg class="shrink-0" fill="#69daff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">GitHub</div>
+                    <div class="text-zinc-500 text-xs">@pjecuacion</div>
+                </div>
+                <span class="material-symbols-outlined arrow-icon text-zinc-600 text-xl shrink-0">arrow_forward</span>
+            </a>
+
+        </div>
+
+        <!-- Footer -->
+        <p class="text-center text-zinc-600 text-xs mt-10 anim-3">© 2026 pjecuacion</p>
+    </div>
+</main>
+
+<script src="../hub.js"></script>
+</body>
+</html>
